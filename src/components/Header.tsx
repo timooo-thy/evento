@@ -13,7 +13,6 @@ const routes = [
 
 export default function Header() {
   const activeRoute = usePathname();
-  console.log(activeRoute);
   return (
     <header className="flex justify-between px-3 sm:px-9 h-14 items-center border-b border-white/10">
       <Logo />
