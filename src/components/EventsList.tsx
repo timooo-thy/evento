@@ -4,10 +4,10 @@ import PaginationControls from "./PaginationControls";
 
 type EventsListProps = {
   city: string;
-  page: number;
+  page?: number;
 };
 
-export default async function EventsList({ city, page }: EventsListProps) {
+export default async function EventsList({ city, page = 1 }: EventsListProps) {
   const { events, remainingCount } = await getEventsList(city, page);
   const nextPage = remainingCount > 0 ? `/events/${city}?page=${page + 1}` : "";
   const previousPage = page > 1 ? `/events/${city}?page=${page - 1}` : "";
