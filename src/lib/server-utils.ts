@@ -19,10 +19,10 @@ export const getEvent = unstable_cache(async (slug: string) => {
 export const getEventsList = unstable_cache(async (city: string, page = 1) => {
   const events = await prisma.eventoEvent.findMany({
     where: {
-      city:
-        city === "all"
-          ? undefined
-          : city.charAt(0).toUpperCase() + city.slice(1),
+      city: {
+        equals: city === "all" ? undefined : city,
+        mode: "insensitive",
+      },
     },
     orderBy: {
       date: "asc",
@@ -34,10 +34,10 @@ export const getEventsList = unstable_cache(async (city: string, page = 1) => {
   const remainingCount =
     (await prisma.eventoEvent.count({
       where: {
-        city:
-          city === "all"
-            ? undefined
-            : city.charAt(0).toUpperCase() + city.slice(1),
+        city: {
+          equals: city === "all" ? undefined : city,
+          mode: "insensitive",
+        },
       },
     })) -
     page * 6;
