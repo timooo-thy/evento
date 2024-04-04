@@ -20,7 +20,7 @@ export async function getEvent(slug: string) {
   return event;
 }
 
-export async function getEventsList(city: string) {
+export async function getEventsList(city: string, page = 1) {
   const events = await prisma.eventoEvent.findMany({
     where: {
       city:
@@ -31,7 +31,20 @@ export async function getEventsList(city: string) {
     orderBy: {
       date: "asc",
     },
+    skip: (page - 1) * 6,
+    take: 6,
   });
 
-  return events;
+  const remainingCount =
+    (await prisma.eventoEvent.count({
+      where: {
+        city:
+          city === "all"
+            ? undefined
+            : city.charAt(0).toUpperCase() + city.slice(1),
+      },
+    })) -
+    page * 6;
+
+  return { events, remainingCount };
 }

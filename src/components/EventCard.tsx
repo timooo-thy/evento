@@ -40,6 +40,7 @@ export default function EventCard({ event }: EventCardProps) {
           width={500}
           height={280}
           className="h-[60%] object-cover"
+          priority
         />
         <div className="flex flex-col flex-1 justify-center items-center">
           <h2 className="text-2xl font-semibold">{event.name}</h2>
