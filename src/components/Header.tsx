@@ -4,7 +4,7 @@ import React from "react";
 import Logo from "./Logo";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { cn } from "@/utils";
+import { cn } from "@/lib/utils";
 
 const routes = [
   { name: "Home", path: "/" },
