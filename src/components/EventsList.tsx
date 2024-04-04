@@ -1,4 +1,4 @@
-import { EventoEvent } from "@/lib/types";
+import { EventoEvent } from "@prisma/client";
 import EventCard from "./EventCard";
 import { getEventsList } from "@/lib/utils";
 
